@@ -1,0 +1,52 @@
+{% extends 'after_login/template.html' %}
+{% block title %} Portofolio {% endblock %}
+{% block content %}
+
+{% if tran|length %}
+        <table class="table table-hover table-dark">
+          <thead>
+            <tr>
+              <th scope="col">Company</th>
+              <th scope="col">Invested</th>
+                <th scope="col">Open</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for tr in tran %}
+        <tr data-href="portofolio/transactions/{{ tr.company }}">
+            <td>
+                {{tr.company}}
+            </td>
+          <td>{{ tr.quantity}}</td>
+          <td>Otto</td>
+        </tr>
+
+         {% endfor %}
+          </tbody>
+        </table>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const rows = document.querySelectorAll("tr[data-href]");
+                rows.forEach(row =>  {
+                    row.addEventListener("click",() => {
+                        window.location.href = row.dataset.href;
+                    });
+                });
+            });
+        </script>
+{% else %}
+        <h2>There are no transactions yet! <a class="link-success" href="{% url 'index' %}">Pick a company from here. </a> </h2>
+
+{% endif %}
+{% endblock %}
+
+
+{% block footer_content %}
+<div>
+    <h6>Current:</h6>
+  {{ money }}
+
+    {{ tr }}
+
+</div>
+{% endblock %}

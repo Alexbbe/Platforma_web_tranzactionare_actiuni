@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+  <style>
+body {
+    color: #000;
+    overflow-x: hidden;
+    height: 100%;
+    background-color: #D1C4E9;
+    background-repeat: no-repeat
+}
+.container {
+    margin: 200px auto
+}
+fieldset {
+    display: none
+}
+fieldset.show {
+    display: block
+}
+select:focus,
+input:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #2196F3 !important;
+    outline-width: 0 !important;
+    font-weight: 400
+}
+button:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    outline-width: 0
+}
+
+.tabs {
+    margin: 2px 5px 0px 5px;
+    padding-bottom: 10px;
+    cursor: pointer
+}
+
+.tabs:hover,
+.tabs.active {
+    border-bottom: 1px solid #2196F3
+}
+
+a:hover {
+    text-decoration: none;
+    color: #1565C0
+}
+
+.box {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 10px
+}
+
+.modal-backdrop {
+    background-color: #64B5F6
+}
+
+.line {
+    background-color: #CFD8DC;
+    height: 1px;
+    width: 100%
+}
+
+@media screen and (max-width: 768px) {
+    .tabs h6 {
+        font-size: 12px
+    }
+}
+
+  </style>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+</head>
+
+
+<body>
+
+ <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary py-2 px-4">Click Here !</button> <!-- Modal-->
+        <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+            <div role="document" class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header row d-flex justify-content-between mx-1 mx-sm-3 mb-0 pb-0 border-0">
+                        <div class="tabs" id="tab01">
+                            <h6 class="text-muted">All days</h6>
+                        </div>
+                        <div class="tabs active" id="tab02">
+                            <h6 class="font-weight-bold">Today</h6>
+                        </div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="modal-body p-0">
+                        <fieldset id="tab011">
+
+                        </fieldset>
+                        <fieldset class="show" id="tab021">
+
+                        </fieldset>
+
+                    </div>
+                    <div class="line"></div>
+                    <div class="modal-footer d-flex flex-column justify-content-center border-0">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+
+<script>
+  $(document).ready(function(){
+$(".tabs").click(function(){
+$(".tabs").removeClass("active");
+$(".tabs h6").removeClass("font-weight-bold");
+$(".tabs h6").addClass("text-muted");
+$(this).children("h6").removeClass("text-muted");
+$(this).children("h6").addClass("font-weight-bold");
+$(this).addClass("active");
+current_fs = $(".active");
+next_fs = $(this).attr('id');
+next_fs = "#" + next_fs + "1";
+$("fieldset").removeClass("show");
+$(next_fs).addClass("show");
+current_fs.animate({}, {
+step: function() {
+current_fs.css({
+'display': 'none',
+'position': 'relative'
+});
+next_fs.css({
+'display': 'block'
+});
+}
+});
+});
+});
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+{% extends 'after_login/template.html' %}
+{% block title %} Company {% endblock %}
+
+{% block content %}
+<h1>{{ company_info.Name }}</h1>
+<img  src="{{ symbol.logo }}" width='200' height='200' >
+{{ a }}
+
+{% if is_open == True %}
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Trade {{ company_info.Name }} </button>
+{% else %}
+<h3>Sorry! the market is closed </h3>
+{% endif %}
+
+
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Check graphic </button>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">{{ company_info.Name }} News </button>
+
+<div class="modal fade-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-">
+    <div class="modal-content">
+      <div class="modal-header" >
+        <img  src="{{ symbol.logo }}" width='50' height='50' >
+        <h5 class="modal-title" id="exampleModalLabel1">Trade {{ company_info.Name }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h5>Price: {{ quote.c }} </h5>
+        <form method="POST">
+        {% csrf_token %}
+       {{ trade.as_p }}
+          <input type="submit" value="Trade">
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade-lg" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <img  src="{{ symbol.logo }}" width='50' height='50' >
+        <h5 class="modal-title" id="exampleModalLabel">{{ company_info.Name }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <img  src="{{ symbol.logo }}" width='50' height='50' >
+        <h5 class="modal-title" id="exampleModalLabel">{{ company_info.Name }} News</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       {% for topic in company_news %}
+          <div class="card" style="width: 40rem;">
+  <img src="{{ topic.image }}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{topic.headline}}</h5>
+    <p class="card-text">{{topic.summary}}</p>
+    <a href="{{ topic.url }}" class="btn btn-primary">See full topic here!</a>
+  </div>
+</div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+            <div role="document" class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header row d-flex justify-content-between mx-1 mx-sm-3 mb-0 pb-0 border-0">
+                        <div class="tabs active" id="tab01">
+                            <h6 class="font-weight-bold">All days</h6>
+                        </div>
+                        <div class="tabs" id="tab02">
+                            <h6 class="text-muted">Last 24 hours</h6>
+                        </div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="modal-body p-0">
+                        <fieldset  class="show " id="tab011">
+
+                      {{ graph|safe }}
+
+                        </fieldset>
+
+                        <fieldset  id="tab021">
+
+                            {{ graph1|safe }}
+
+                        </fieldset>
+
+                    </div>
+                    <div class="line"></div>
+                    <div class="modal-footer d-flex flex-column justify-content-center border-0">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+<hr>
+
+{{ company_info.Description }}
+
+{% endblock %}
+
+{% block footer_content %}
+
+  {{ money }}
+
+{% endblock %}
+

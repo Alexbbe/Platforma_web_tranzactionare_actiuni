@@ -1,0 +1,10 @@
+{% extends 'after_login/template.html' %}
+{% block title %} Edit {% endblock %}
+{% block content %} <h1>This is the user edit page!!</h1>
+<form method="post">
+    {% csrf_token %}
+{{ form.as_p }}
+   <input type="submit" value="Submit">
+</form>
+
+{% endblock %}
