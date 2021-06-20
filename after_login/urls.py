@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path
 from after_login import views
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns = [
     path('index', views.index, name='index'),
     path('edit_user', views.edit_user, name='edit_user'),
@@ -13,3 +15,6 @@ urlpatterns = [
     path('add_company',views.add_company,name='add_company'),
     path('del_company',views.del_company,name='del_company')
 ]
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -6,7 +6,7 @@ from after_login.models import UserEdit,Transactions
 class UserEditForm(ModelForm):
     class Meta:
         model = UserEdit
-        fields = ['adress','city','country']
+        fields = ['country','city','adress','phone_number','model_pic']
 
 
 class Transactions_Form(ModelForm):

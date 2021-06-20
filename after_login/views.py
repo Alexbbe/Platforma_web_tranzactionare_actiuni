@@ -3,7 +3,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_control
 from after_login.forms import UserEditForm, Transactions_Form
-from after_login.models import Transactions
+from after_login.models import Transactions, UserEdit
 from after_login.functions import is_time_between, is_weekend
 from accounts.models import MyUser
 import plotly.graph_objects as go
@@ -44,8 +44,6 @@ finnhub_client = finnhub.Client(api_key="c16dnhv48v6ppg7eoebg")
 @login_required(login_url='userlogin')
 @cache_control(no_cache=True, must_revalidate=True , no_store=True )
 def index(request):
-
-
     is_open = False
     if is_weekend() is False and is_time_between() is True:
         is_open = True
@@ -72,7 +70,7 @@ def index(request):
                'invested':round(data[1],2),
                'profit': round(data[2],2),
                'capital':round(data[3],2),
-               'market_open':is_open
+               'market_open':is_open,
                }
 
     return render(request,'after_login/index.html',context)
@@ -89,47 +87,55 @@ def market_news(request):
         'invested': round(data[1], 2),
         'profit': round(data[2], 2),
         'capital': round(data[3], 2),
+        'search_list': companies_name,
 
     }
     return render(request,'after_login/market_news.html',context)
 
-
 @login_required(login_url='login')
 def edit_user(request):
-
+    data = calculate_capital_profit(email=request.user, id=request.user.id)
     if request.method == 'POST':
-        form = UserEditForm(request.POST)
+        form = UserEditForm(request.POST, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
             instance.user = request.user
             instance.save()
-            return redirect('index')
-
+            return redirect('user_info')
     else:
         form = UserEditForm()
-
     context = {
+        'money': round(data[0], 2),
+        'invested': round(data[1], 2),
+        'profit': round(data[2], 2),
+        'capital': round(data[3], 2),
         'form': form,
         'search_list': companies_name,
-
     }
     return render(request, 'after_login/edit_user.html',context)
 
-
 @login_required(login_url='login')
 def user_info(request):
+    is_completed = True
     data = calculate_capital_profit(email=request.user, id=request.user.id)
-    user = request.user.money
-    a = MyUser.objects.get(email=request.user)
+    try:
+        user_info = UserEdit.objects.get(user_id=request.user.id)
+    except UserEdit.DoesNotExist:
+        user_info = None
+        is_completed = False
+    user = MyUser.objects.get(email=request.user)
     context = {
+        'is_completed':is_completed,
+        'user_info':user_info,
         'user': user,
         'money': round(data[0], 2),
         'invested': round(data[1], 2),
         'profit': round(data[2], 2),
         'capital': round(data[3], 2),
+        'search_list': companies_name,
     }
-    return render(request,'after_login/user_info.html',context)
 
+    return render(request,'after_login/user_info.html',context)
 
 @login_required(login_url='login')
 def company_page(request):
@@ -174,9 +180,6 @@ def company_page(request):
         num = datetime.fromtimestamp(num)
         list_of_dates2.append(num)
 
-
-
-
     date1 = pd.Series(list_of_dates1)
     date2 = pd.Series(list_of_dates2)
 
@@ -193,8 +196,6 @@ def company_page(request):
                                          low=df2['l'],
                                          close=df2['c'])])
     str2 = fig.to_html(full_html=False, default_height=600, default_width=1000)
-
-
 
     company_api_desc = requests.get(f'https://www.alphavantage.co/query?function=OVERVIEW&symbol={symbol1}&apikey=RWLP0FCH73F5JTJA')
     r = finnhub_client.company_profile2(symbol=symbol1)
@@ -242,13 +243,13 @@ def company_page(request):
 def portofolio(request):
     list_of_tran = list()
     tr1 = Transactions.objects.all()
-    for p in Transactions.objects.raw('SELECT * FROM after_login_transactions'):
+    for p in Transactions.objects.raw(f'SELECT * FROM after_login_transactions WHERE user_id = {request.user.id}'):
        list_of_tran.append(p.company)
     set1 = list(set(list_of_tran))
     lsit1 = list()
     for s in set1:
         total = 0
-        for quer in Transactions.objects.raw('SELECT * FROM after_login_transactions'):
+        for quer in Transactions.objects.raw(f'SELECT * FROM after_login_transactions WHERE user_id = {request.user.id}'):
             if quer.company == s:
                 total+=quer.quantity
         set2 = {'company':s,
@@ -264,7 +265,8 @@ def portofolio(request):
                'money': round(data[0], 2),
                'invested': round(data[1], 2),
                'profit': round(data[2], 2),
-               'capital': round(data[3], 2)
+               'capital': round(data[3], 2),
+               'search_list': companies_name,
                }
     return render(request,'after_login/portofolio.html',context)
 
@@ -272,16 +274,17 @@ def portofolio(request):
 @login_required(login_url='login')
 def tran(request,company):
     list_of_trans = list()
-    for p in Transactions.objects.raw(f'SELECT * FROM after_login_transactions WHERE company="{company}"'):
+    for p in Transactions.objects.raw(f'SELECT * FROM after_login_transactions WHERE company="{company}" AND'
+                                      f' user_id= {request.user.id}'):
         list_of_trans.append(p)
     data = calculate_capital_profit(email=request.user, id=request.user.id)
     context = {'trans': list_of_trans,
                'money': round(data[0], 2),
                'invested': round(data[1], 2),
                'profit': round(data[2], 2),
-               'capital': round(data[3], 2)
+               'capital': round(data[3], 2),
+               'search_list': companies_name,
                }
-
     return render(request, 'after_login/company_transactions.html',context)
 
 

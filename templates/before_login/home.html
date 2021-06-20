@@ -1,3 +1,139 @@
+
 {% extends 'before_login/template.html' %}
+{% load static %}
 {% block title %} Home {% endblock %}
-{% block content %} <h1>This is the home page!!</h1> {% endblock %}
+{% block content %}
+<style>
+
+body {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  color: #5a5a5a;
+}
+
+.carousel {
+  margin-bottom: 4rem;
+}
+
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+}
+
+.carousel-item {
+  height: 32rem;
+}
+.carousel-item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 32rem;
+}
+
+.marketing .col-lg-4 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: 400;
+}
+
+.marketing .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+}
+
+
+.featurette-divider {
+  margin: 5rem 0;
+}
+
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  /* rtl:remove */
+  letter-spacing: -.05rem;
+}
+
+@media (min-width: 40em) {
+  .carousel-caption p {
+    margin-bottom: 1.25rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 62em) {
+  .featurette-heading {
+    margin-top: 7rem;
+  }
+}
+</style>
+<main>
+  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Join the platform!</h1>
+            <p>Don't have an account yet?</p>
+            <p><a class="btn btn-lg btn-primary" href="{% url 'register' %}">Sign up today</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Go to the trading platform!</h1>
+            <p>Are you a member of AlphaTrade platform?</p>
+            <p><a class="btn btn-lg btn-primary" href="{% url 'userlogin' %}">Sign in</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+    <!-- START THE FEATURETTES -->
+    <div class="container">
+      <div class="bg-light p-5 rounded">
+    <hr class="featurette-divider">
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">AlphaTrade. <span class="text-muted">Start trading easily.</span></h2>
+        <p class="h4">AlphaTrade is a platform that allows you to buy or sell stocks. </p>
+      </div>
+      <div class="col-md-5 order-md-1">
+       <img src="{% static 'images/trading_photo.jpg' %}" width="1500" height="500" class="img-thumbnail">
+      </div>
+    </div>
+    <hr class="featurette-divider">
+  </div>
+</div>
+
+  <footer >
+    <p class="float-end"><a href="#">Back to top</a></p>
+    <p>&copy; 2021 University POLITEHNICA of Bucharest &middot; </p>
+  </footer>
+</main>
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+{% endblock %}
