@@ -44,7 +44,7 @@ finnhub_client = finnhub.Client(api_key="c16dnhv48v6ppg7eoebg")
 @login_required(login_url='userlogin')
 @cache_control(no_cache=True, must_revalidate=True , no_store=True )
 def index(request):
-    is_open = False
+    is_open = True
     if is_weekend() is False and is_time_between() is True:
         is_open = True
     data = calculate_capital_profit(email=request.user,id=request.user.id)
@@ -137,7 +137,7 @@ def user_info(request):
 
     return render(request,'after_login/user_info.html',context)
 
-@login_required(login_url='login')
+@login_required(login_url='userlogin')
 def company_page(request):
     """
     On this page are the specific informations for
@@ -153,7 +153,7 @@ def company_page(request):
     # timestamp_30days = int(datetime.timestamp(time_30days))
 
 
-    is_open = False
+    is_open = True
     if is_weekend() is False and is_time_between() is True:
         is_open = True
 
@@ -256,12 +256,12 @@ def portofolio(request):
                 'quantity':total,
          }
         lsit1.append(set2)
-    list_of_plm = list()
+    list_of_transactions = list()
     for tran in tr1:
-        list_of_plm.append(tran.company)
+        list_of_transactions.append(tran.company)
     data = calculate_capital_profit(email=request.user,id=request.user.id)
     context = {'tran':lsit1,
-               'tr': list_of_plm,
+               'tr': list_of_transactions,
                'money': round(data[0], 2),
                'invested': round(data[1], 2),
                'profit': round(data[2], 2),

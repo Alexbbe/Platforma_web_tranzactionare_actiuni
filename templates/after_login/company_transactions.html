@@ -21,7 +21,7 @@
             <td>{{ tr.company }}</td>
           <td>{{ tr.type}}</td>
           <td>{{ tr.quantity }}</td>
-            <td>{{ tr.invested }}</td>
+            <td>{{ tr.invested|floatformat:2 }}</td>
             <td>{{ tr.date }}</td>
             <td>
                 <a href="delete/{{tr.company}}/{{tr.id}}" class="btn btn-danger">Stop transaction</a>
