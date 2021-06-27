@@ -1,200 +1,4 @@
 {% load static %}
-
-<!--<!doctype html>-->
-<!--<html lang="en">-->
-<!--  <head>-->
-<!--    <meta charset="utf-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
-<!--    <meta name="description" content="">-->
-<!--    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">-->
-<!--    <meta name="generator" content="Hugo 0.80.0">-->
-<!--    <title></title>-->
-
-<!--    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/navbar-fixed/">-->
-
-<!--    &lt;!&ndash; Bootstrap core CSS &ndash;&gt;-->
-<!--&lt;!&ndash;<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">&ndash;&gt;-->
-<!--      <script src="{% static 'after_login/JS/search.js' %}"></script>-->
-<!--      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">-->
-<!--    &lt;!&ndash; Custom styles for this template &ndash;&gt;-->
-<!--    <link href="{% static 'after_login/CSS/template.css' %}" rel="stylesheet">-->
-<!--  </head>-->
-<!--  <body class="d-flex flex-column h-100">-->
-
-<!--<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">-->
-<!--  <div class="container-fluid">-->
-<!--    <a class="navbar-brand" href="{% url 'home' %}">Logo</a>-->
-<!--    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--      <span class="navbar-toggler-icon"></span>-->
-<!--    </button>-->
-<!--    <div class="collapse navbar-collapse" id="navbarCollapse">-->
-<!--      <ul class="navbar-nav me-auto mb-2 mb-md-0">-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Watchlist</a>-->
-<!--        </li>-->
-<!--          <li>-->
-<!--          <a class="nav-link active" aria-current="page" href="{% url 'marketnews' %}">Market News</a>-->
-<!--          </li>-->
-<!--              <li class="nav-item dropdown">-->
-<!--            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">My account</a>-->
-
-<!--            <ul class="dropdown-menu" aria-labelledby="dropdown01">-->
-<!--              <li><a class="dropdown-item" href="{% url 'user_info' %}">User info</a></li>-->
-<!--              <li><a class="dropdown-item" href="{% url 'edit_user' %}">Edit User</a></li>-->
-<!--              <li><a class="dropdown-item" href="{% url 'portofolio' %}">Portofolio</a></li>-->
-<!--            </ul>-->
-<!--          </li>-->
-<!--         <li class="nav-item">-->
-<!--          <a class="nav-link active" aria-current="page" href="{% url 'logoutUser' %}">Logout</a>-->
-<!--        </li>-->
-<!--      </ul>-->
-
-<!--      <form autocomplete="off" action="{% url 'company' %}">-->
-
-<!--             <div class="autocomplete" style="width:300px;">-->
-<!--                    <input id="myInput" type="text" name="company" placeholder="Search company...">-->
-<!--             </div>-->
-<!--                       <input type="submit">-->
-<!--        </form>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</nav>-->
-
-
-<!--<main class="container">-->
-<!--  <div class="bg-light p-5 rounded">-->
-<!--
-
-<!--  </div>-->
-<!--</main>-->
-
-<!--<div class="footer">-->
-<!--<footer class="footer mt-auto py-3 bg-dark">-->
-<!--  <div class="container">-->
-<!--    <span class="text-muted">-->
-<!--        {% block footer_content %}-->
-
-
-<!--         {% endblock %}-->
-<!--    </span>-->
-<!--  </div>-->
-<!--</footer>-->
-<!--</div>-->
-
-
-<!--&lt;!&ndash;    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>&ndash;&gt;-->
-<!--        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"-->
-<!--                integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>-->
-<!--              <script>-->
-<!--function autocomplete(inp, arr) {-->
-<!--  /*the autocomplete function takes two arguments,-->
-<!--  the text field element and an array of possible autocompleted values:*/-->
-<!--  var currentFocus;-->
-<!--  /*execute a function when someone writes in the text field:*/-->
-<!--  inp.addEventListener("input", function(e) {-->
-<!--      var a, b, i, val = this.value;-->
-<!--      /*close any already open lists of autocompleted values*/-->
-<!--      closeAllLists();-->
-<!--      if (!val) { return false;}-->
-<!--      currentFocus = -1;-->
-<!--      /*create a DIV element that will contain the items (values):*/-->
-<!--      a = document.createElement("DIV");-->
-<!--      a.setAttribute("id", this.id + "autocomplete-list");-->
-<!--      a.setAttribute("class", "autocomplete-items");-->
-<!--      /*append the DIV element as a child of the autocomplete container:*/-->
-<!--      this.parentNode.appendChild(a);-->
-<!--      /*for each item in the array...*/-->
-<!--      for (i = 0; i < arr.length; i++) {-->
-<!--        /*check if the item starts with the same letters as the text field value:*/-->
-<!--        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {-->
-<!--          /*create a DIV element for each matching element:*/-->
-<!--          b = document.createElement("DIV");-->
-<!--          /*make the matching letters bold:*/-->
-<!--          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";-->
-<!--          b.innerHTML += arr[i].substr(val.length);-->
-<!--          /*insert a input field that will hold the current array item's value:*/-->
-<!--          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";-->
-<!--          /*execute a function when someone clicks on the item value (DIV element):*/-->
-<!--          b.addEventListener("click", function(e) {-->
-<!--              /*insert the value for the autocomplete text field:*/-->
-<!--              inp.value = this.getElementsByTagName("input")[0].value;-->
-<!--              /*close the list of autocompleted values,-->
-<!--              (or any other open lists of autocompleted values:*/-->
-<!--              closeAllLists();-->
-<!--          });-->
-<!--          a.appendChild(b);-->
-<!--        }-->
-<!--      }-->
-<!--  });-->
-<!--  /*execute a function presses a key on the keyboard:*/-->
-<!--  inp.addEventListener("keydown", function(e) {-->
-<!--      var x = document.getElementById(this.id + "autocomplete-list");-->
-<!--      if (x) x = x.getElementsByTagName("div");-->
-<!--      if (e.keyCode == 40) {-->
-<!--        /*If the arrow DOWN key is pressed,-->
-<!--        increase the currentFocus variable:*/-->
-<!--        currentFocus++;-->
-<!--        /*and and make the current item more visible:*/-->
-<!--        addActive(x);-->
-<!--      } else if (e.keyCode == 38) { //up-->
-<!--        /*If the arrow UP key is pressed,-->
-<!--        decrease the currentFocus variable:*/-->
-<!--        currentFocus&#45;&#45;;-->
-<!--        /*and and make the current item more visible:*/-->
-<!--        addActive(x);-->
-<!--      } else if (e.keyCode == 13) {-->
-<!--        /*If the ENTER key is pressed, prevent the form from being submitted,*/-->
-<!--        e.preventDefault();-->
-<!--        if (currentFocus > -1) {-->
-<!--          /*and simulate a click on the "active" item:*/-->
-<!--          if (x) x[currentFocus].click();-->
-<!--        }-->
-<!--      }-->
-<!--  });-->
-<!--  function addActive(x) {-->
-<!--    /*a function to classify an item as "active":*/-->
-<!--    if (!x) return false;-->
-<!--    /*start by removing the "active" class on all items:*/-->
-<!--    removeActive(x);-->
-<!--    if (currentFocus >= x.length) currentFocus = 0;-->
-<!--    if (currentFocus < 0) currentFocus = (x.length - 1);-->
-<!--    /*add class "autocomplete-active":*/-->
-<!--    x[currentFocus].classList.add("autocomplete-active");-->
-<!--  }-->
-<!--  function removeActive(x) {-->
-<!--    /*a function to remove the "active" class from all autocomplete items:*/-->
-<!--    for (var i = 0; i < x.length; i++) {-->
-<!--      x[i].classList.remove("autocomplete-active");-->
-<!--    }-->
-<!--  }-->
-<!--  function closeAllLists(elmnt) {-->
-<!--    /*close all autocomplete lists in the document,-->
-<!--    except the one passed as an argument:*/-->
-<!--    var x = document.getElementsByClassName("autocomplete-items");-->
-<!--    for (var i = 0; i < x.length; i++) {-->
-<!--      if (elmnt != x[i] && elmnt != inp) {-->
-<!--        x[i].parentNode.removeChild(x[i]);-->
-<!--      }-->
-<!--    }-->
-<!--  }-->
-<!--  /*execute a function when someone clicks in the document:*/-->
-<!--  document.addEventListener("click", function (e) {-->
-<!--      closeAllLists(e.target);-->
-<!--  });-->
-<!--}-->
-
-<!--/*An array containing all the country names in the world:*/-->
-<!--// var countries = ["Apple","Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];-->
-<!--var countries = {{ search_list|safe }} ;-->
-<!--/*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/-->
-<!--autocomplete(document.getElementById("myInput"), countries);-->
-<!--</script>-->
-
-<!--  </body>-->
-<!--</html>-->
-
-
-
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
   <head>
@@ -206,151 +10,8 @@
     <title>{% block title %} {% endblock %}</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
-
-
-
-    <!-- Bootstrap core CSS -->
-<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-
-.autocomplete {
-  position: relative;
-  display: inline-block;
-}
-
-input {
-  border: 1px solid transparent;
-  background-color: #f1f1f1;
-  padding: 10px;
-  font-size: 16px;
-}
-
-input[type=text] {
-  background-color: #f1f1f1;
-  width: 100%;
-}
-
-input[type=submit] {
-  background-color: DodgerBlue;
-  color: #fff;
-  cursor: pointer;
-}
-.autocomplete-items {
-  position: absolute;
-  border: 1px solid #d4d4d4;
-  border-bottom: none;
-  border-top: none;
-  z-index: 99;
-  /*position the autocomplete items to be the same width as the container:*/
-  top: 100%;
-  left: 0;
-  right: 0;
-}
-.autocomplete-items div {
-  padding: 10px;
-  cursor: pointer;
-  background-color: #fff;
-  border-bottom: 1px solid #d4d4d4;
-}
-/*when hovering an item:*/
-.autocomplete-items div:hover {
-  background-color: #e9e9e9;
-}
-/*when navigating through the items using the arrow keys:*/
-.autocomplete-active {
-  background-color: DodgerBlue !important;
-  color: #ffffff;
-}
-
-.footer{
-    position: fixed;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-   background-color: red;
-   color: white;
-}
-
-
-fieldset {
-    display: none
-}
-fieldset.show {
-    display: block
-}
-select:focus,
-input:focus {
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    border: 1px solid #2196F3 !important;
-    outline-width: 0 !important;
-    font-weight: 400
-}
-button:focus {
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    outline-width: 0
-}
-
-.tabs {
-    margin: 2px 5px 0px 5px;
-    padding-bottom: 10px;
-    cursor: pointer
-}
-
-.tabs:hover,
-.tabs.active {
-    border-bottom: 1px solid #2196F3
-}
-
-a:hover {
-    text-decoration: none;
-    color: #1565C0
-}
-
-.box {
-    margin-bottom: 10px;
-    border-radius: 5px;
-    padding: 10px
-}
-
-.modal-backdrop {
-    background-color: #64B5F6
-}
-
-.line {
-    background-color: #CFD8DC;
-    height: 1px;
-    width: 100%
-}
-
-@media screen and (max-width: 768px) {
-    .tabs h6 {
-        font-size: 12px
-    }
-}
-
-span.a{
+<style>
+  span.a{
   display: inline-block;
 }
 span.b{
@@ -358,17 +19,18 @@ span.b{
   padding-left: 10px;
   padding-right: 10px ;
 }
+</style>
 
-    </style>
-
-
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <!-- Custom styles for this template -->
     <link href="{% static 'after_login/CSS/dashboard.css' %}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
   </head>
-  <body>
 
+  <body>
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{% url 'home' %}"><img  style="padding-left: 40px" src="{% static 'after_login/images/logo.png' %}"></a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -378,11 +40,9 @@ span.b{
 
              <div class="autocomplete">
                 <input id="myInput" name="company"  class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-
              </div>
                        <input type="submit">
         </form>
-
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
       <a class="nav-link" href="{% url 'logoutUser' %}">Sign out</a>
@@ -453,9 +113,7 @@ span.b{
       {% block content %}
 
       {% endblock %}
-
       <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-
         <footer class="footer mt-auto py-3 bg-dark">
       <div class="container">
           <div style="white-space: nowrap">
@@ -465,20 +123,11 @@ span.b{
             <span class="b"><h5 style="color: ghostwhite">Capital:  <span class="a" style="color: lawngreen">{{ capital }}$</span> </h5></span>
           </div>
       </div>
-
-
-
             </footer>
-
     </main>
-
   </div>
 
-
-
-
 </div>
-
 
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
@@ -594,7 +243,6 @@ autocomplete(document.getElementById("myInput"), countries);
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
-
 <script>
   $(document).ready(function(){
 $(".tabs").click(function(){
@@ -623,7 +271,5 @@ next_fs.css({
 });
 });
 </script>
-
-
   </body>
 </html>

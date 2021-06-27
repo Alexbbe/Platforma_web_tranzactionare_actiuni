@@ -44,7 +44,7 @@ finnhub_client = finnhub.Client(api_key="c16dnhv48v6ppg7eoebg")
 @login_required(login_url='userlogin')
 @cache_control(no_cache=True, must_revalidate=True , no_store=True )
 def index(request):
-    is_open = True
+    is_open = False
     if is_weekend() is False and is_time_between() is True:
         is_open = True
     data = calculate_capital_profit(email=request.user,id=request.user.id)
@@ -153,7 +153,7 @@ def company_page(request):
     # timestamp_30days = int(datetime.timestamp(time_30days))
 
 
-    is_open = True
+    is_open = False
     if is_weekend() is False and is_time_between() is True:
         is_open = True
 

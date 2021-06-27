@@ -34,17 +34,5 @@
         </script>
 {% else %}
         <h2>There are no transactions yet! <a class="link-success" href="{% url 'index' %}">Pick a company from here. </a> </h2>
-
 {% endif %}
-{% endblock %}
-
-
-{% block footer_content %}
-<div>
-    <h6>Current:</h6>
-  {{ money }}
-
-    {{ tr }}
-
-</div>
 {% endblock %}
